@@ -1,23 +1,13 @@
 import { Meteor } from 'meteor/meteor'
-import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, browserHistory } from 'react-router'
+import { Tracker } from 'meteor/tracker'
 
-import Login from '../imports/ui/Login'
-import Register from '../imports/ui/Register'
-import Links from '../imports/ui/Links'
-import FourOhFour from '../imports/ui/FourOhFour'
+import { routes, authentication } from '../imports/routes/routes'
 
-const routes = (
-  <Router history={browserHistory}>
-    <Route path='/' component={Login} />
-    <Route path='/links' component={Links} />
-    <Route path='/register' component={Register} />
-    <Route path='*' component={FourOhFour} />
-  </Router>
-)
-
-
+Tracker.autorun(() => {
+  const loggedIn = Meteor.userId()
+  authentication(loggedIn)
+})
 
 Meteor.startup(() => {
   render(routes, document.getElementById('root'))

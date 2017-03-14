@@ -1,5 +1,6 @@
-import { Meteor } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor'
+import validateUser from '../imports/api/users'
 
 Meteor.startup(() => {
-  // code to run on server at startup
-});
+  validateUser()
+})

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, browserHistory } from 'react-router'
+import { Link } from 'react-router'
 import { Meteor } from 'meteor/meteor'
 
 export default class Login extends Component {
@@ -18,13 +18,7 @@ export default class Login extends Component {
     const password = this.refs.password.value.trim()
 
     Meteor.loginWithPassword({ email }, password, (err) => {
-      if (err) {
-        this.setState({
-          error: err.reason
-        })
-      } else {
-        browserHistory.push('/links')
-      }
+      err ? this.setState({ error: 'Wrong email or password. Try again.' }) : this.setState({ error: '' })
     })
   }
   render () {
@@ -36,7 +30,7 @@ export default class Login extends Component {
           <button>Login</button>
         </form>
         <div>
-          {this.state.error ? <div>{this.state.error}</div> : null}
+          {this.state.error ? <h3>{this.state.error}</h3> : null}
         </div>
         <Link to='/register'>Don't have an account?</Link>
       </div>
