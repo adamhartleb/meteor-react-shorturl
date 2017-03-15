@@ -10,6 +10,9 @@ Tracker.autorun(() => {
 })
 
 Meteor.startup(() => {
+  Meteor.call('greetUser', 'Pia', (err, res) => {
+    console.log('Greet User Arguments', err, res)
+  })
   render(routes, document.getElementById('root'))
 })
 

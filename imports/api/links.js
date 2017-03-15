@@ -8,3 +8,10 @@ if (Meteor.isServer) {
     return Link.find({ user: this.userId })
   })
 }
+
+Meteor.methods({
+  greetUser (name = 'Adam') {
+    console.log('greetUser is running')
+    return `Hello ${name}`
+  }
+})
