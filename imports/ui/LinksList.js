@@ -27,7 +27,7 @@ export default class LinksList extends Component {
         <h3>Links List</h3>
         <ul>
           {this.state.linkList.map(link => {
-            return <li key={link._id}><a href={link.url}>{link._id}</a></li>
+            return <li key={link._id}><a href={'localhost:3000/' + link._id}>{link.url}</a></li>
           })}
         </ul>
       </div>
