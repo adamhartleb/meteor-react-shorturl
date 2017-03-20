@@ -13,6 +13,7 @@ Meteor.startup(() => {
       res.statusCode = 302
       res.setHeader('Location', result.url)
       res.end()
+      Meteor.call('Links.UpdateVisited', _id)
     } else {
       next()
     }

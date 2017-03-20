@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { Tracker } from 'meteor/tracker'
 import { Link } from '../api/links'
+import LinkListItem from './LinksListItem'
 
 export default class LinksList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      linkList: []
+      linkList: [],
+      currentCopied: '',
+      showHidden: false
     }
+    this.copied = this.copied.bind(this)
   }
   componentDidMount () {
     this.linkTracker = Tracker.autorun(() => {
@@ -21,16 +25,26 @@ export default class LinksList extends Component {
   componentWillUnmount () {
     this.linkTracker.stop()
   }
+  copied (id) {
+    if (this.state.currentCopied === '') this.setState({ currentCopied: id })
+    if (this.state.currentCopied.id !== id) this.setState({ currentCopied: id })
+  }
   render () {
-    const url = Meteor.absoluteUrl()
+    const { linkList, currentCopied, showHidden } = this.state
     return (
       <div>
         <h3>Links List</h3>
-        <ul>
-          {this.state.linkList.map(link => {
-            return <li key={link._id}><a href={url + link._id}>{link.url}</a></li>
-          })}
-        </ul>
+        <div>
+          <input id='hidden' type='checkbox' onChange={() => this.setState({ showHidden: !this.state.showHidden })} />
+          <label htmlFor='hidden'>Show hidden</label>
+        </div>
+        {linkList.filter(link => link.hidden === showHidden).map(link => {
+          return (
+            <LinkListItem
+              currentCopied={currentCopied}
+              copied={this.copied} key={link._id} {...link} />
+          )
+        })}
       </div>
     )
   }
