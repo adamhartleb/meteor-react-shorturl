@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class FourOhFour extends Component {
-  render () {
-    return (
-      <h1>404 ERROR</h1>
-    )
-  }
+const FourOhFour = () => {
+  return <h1>404 ERROR</h1>
 }
+
+export default FourOhFour

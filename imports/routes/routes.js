@@ -17,6 +17,7 @@ const enterPrivatePage = () => {
 }
 
 
+
 export const routes = (
   <Router history={browserHistory}>
     <Route path='/' component={Login} onEnter={enterPublicPage} />

@@ -22,12 +22,13 @@ export default class LinksList extends Component {
     this.linkTracker.stop()
   }
   render () {
+    const url = Meteor.absoluteUrl()
     return (
       <div>
         <h3>Links List</h3>
         <ul>
           {this.state.linkList.map(link => {
-            return <li key={link._id}><a href={'localhost:3000/' + link._id}>{link.url}</a></li>
+            return <li key={link._id}><a href={url + link._id}>{link.url}</a></li>
           })}
         </ul>
       </div>
