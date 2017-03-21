@@ -19,13 +19,19 @@ export default class LinkListItem extends Component {
       <div>
         <p>{url + _id}</p>
         <p>{visitedCount}</p>
+        <a className='button button--link button--pill' href={url + _id} target='_blank'>
+          Visit
+        </a>
         <button
+          className='button button--pill'
           onClick={() => { copied(_id) }}
           ref='urlCopy'
           data-clipboard-text={url + _id}>
           {currentCopied === _id ? 'Copied' : 'Copy'}
         </button>
-        <button onClick={() => this.changeHiddenStatus(_id, hidden)}>
+        <button
+          className='button button--pill'
+          onClick={() => this.changeHiddenStatus(_id, hidden)}>
           {hidden ? 'Unhide' : 'Hide'}
         </button>
       </div>

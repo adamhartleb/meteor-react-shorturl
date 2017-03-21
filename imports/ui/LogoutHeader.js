@@ -8,7 +8,7 @@ const logOut = () => {
 export const LogoutHeader = ({ title }) => (
   <div>
     <h1>{title}</h1>
-    <button onClick={logOut}>Logout</button>
+    <button className='button' onClick={logOut}>Logout</button>
   </div>
 )
 

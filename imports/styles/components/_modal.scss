@@ -1,0 +1,8 @@
+.boxed-view--overlay {
+  background: fade-out($boxed-view-bg, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

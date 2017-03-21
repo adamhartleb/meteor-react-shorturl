@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Lato');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: $base-font-size;
+  font-family: 'Montserrat'
+}
+
+h1 {
+  margin-bottom: $space;
+}
+
+a {
+  color: black;
+}
+
+p {
+  font-family: 'Lato';
+  font-weight: 300;
+  margin-bottom: $space;
+}
+
+input[type=text], input[type=email], input[type=password] {
+  font-size: $base-font-size;
+  margin-bottom: $space;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-family: 'Lato';
+}

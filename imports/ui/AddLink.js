@@ -7,45 +7,48 @@ export default class AddLink extends Component {
     super(props)
     this.state = {
       linkUrl: '',
-      isModalOpen: false
+      isModalOpen: false,
+      error: ''
     }
     this.createLink = this.createLink.bind(this)
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
+    this.handleModal = this.handleModal.bind(this)
   }
   createLink (e) {
     e.preventDefault()
     const { linkUrl } = this.state
 
-    if (linkUrl) {
-      Meteor.call('Links.Insert', linkUrl, (err, res) => {
-        if (!err) this.setState({ linkUrl: '', isModalOpen: false })
-      })
-    }
+    Meteor.call('Links.Insert', linkUrl, (err, res) => {
+      if (!err) this.handleModal(false)
+      else this.setState({ error: err.reason })
+    })
   }
-  openModal () {
-    this.setState({ isModalOpen: true })
-  }
-  closeModal () {
-    this.setState({ isModalOpen: false, linkUrl: '' })
+  handleModal (bool) {
+    this.setState({ isModalOpen: bool, url: '', error: '' })
   }
   render () {
     const { isModalOpen, linkUrl } = this.state
     return (
       <div>
-        <button onClick={() => this.setState({ isModalOpen: true })}>+ Add Link</button>
+        <button className='button' onClick={() => this.handleModal(true)}>+ Add Link</button>
         <Modal
           isOpen={isModalOpen}
-          contentLabel='Add link'>
-          <form onSubmit={this.createLink}>
+          contentLabel='Add link'
+          onAfterOpen={() => this.refs.url.focus()}
+          onRequestClose={() => this.handleModal(false)}
+          className='boxed-view__box'
+          overlayClassName='boxed-view boxed-view--overlay'>
+          <h1>Add Link</h1>
+          {this.state.error ? <p>{this.state.error}</p> : null}
+          <form className='boxed-view__form' onSubmit={this.createLink}>
             <input
               type='text'
               onChange={(e) => this.setState({ linkUrl: e.target.value })}
               value={linkUrl}
-              placeholder='URL' />
-            <button>Add</button>
+              placeholder='URL'
+              ref='url' />
+            <button className='button'>Add</button>
+            <button type='button' className='button button--secondary' onClick={() => this.handleModal(false)}>Cancel</button>
           </form>
-          <button onClick={this.closeModal}>Cancel</button>
         </Modal>
       </div>
     )
