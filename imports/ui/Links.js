@@ -8,8 +8,8 @@ export default class Links extends Component {
     return (
       <div>
         <LogoutHeader title='Links' />
-        <LinksList />
         <AddLink />
+        <LinksList />
       </div>
     )
   }

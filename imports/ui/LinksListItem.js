@@ -13,11 +13,12 @@ export default class LinkListItem extends Component {
     Meteor.call('Links.UpdateHidden', id, hidden)
   }
   render () {
-    const { _id, copied, currentCopied, hidden } = this.props
+    const { _id, copied, currentCopied, hidden, visitedCount } = this.props
     const url = Meteor.absoluteUrl()
     return (
       <div>
         <p>{url + _id}</p>
+        <p>{visitedCount}</p>
         <button
           onClick={() => { copied(_id) }}
           ref='urlCopy'

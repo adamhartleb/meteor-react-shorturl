@@ -27,12 +27,12 @@ Meteor.methods({
     Link.update({ _id }, {$set: { hidden: !hidden }})
   },
   'Links.UpdateVisited' (_id) {
-    if (!this.userId) throw new Meteor.Error('Not Authorized')
     const date = new Date()
     Link.update({ _id },
       {
         $inc: { visitedCount: 1 },
         $set: { lastVisitedAt: date }
-      })
+      }
+    )
   }
 })
