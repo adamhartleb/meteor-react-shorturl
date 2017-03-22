@@ -30,13 +30,12 @@ export default class LinksList extends Component {
     if (this.state.currentCopied.id !== id) this.setState({ currentCopied: id })
   }
   render () {
-    const { linkList, currentCopied, showHidden } = this.state
+    let { linkList, currentCopied, showHidden } = this.state
     return (
       <div>
-        <h3>Links List</h3>
-        <div>
-          <input id='hidden' type='checkbox' onChange={() => this.setState({ showHidden: !this.state.showHidden })} />
-          <label htmlFor='hidden'>Show hidden</label>
+        <div className='checkbox'>
+          <input id='hidden' type='checkbox' onChange={() => this.setState({ showHidden: !showHidden })} />
+          <label htmlFor='hidden'> Show Hidden</label>
         </div>
         {linkList.filter(link => link.hidden === showHidden).map(link => {
           return (

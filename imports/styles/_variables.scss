@@ -1,3 +1,6 @@
+// site
+$site-width: 800px;
+
 // font-size
 $base-font-size: 16px;
 
@@ -11,3 +14,11 @@ $space: 14px;
 // button
 $button-padding: 10px;
 $button-bg: #5b4681;
+
+// header
+$header-bg: #5b4681;
+$header-color: white;
+
+// links
+$link-bg: #f9f9f9;
+$link-border: darken($link-bg, 8%);

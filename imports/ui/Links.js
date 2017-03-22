@@ -7,9 +7,11 @@ export default class Links extends Component {
   render () {
     return (
       <div>
-        <LogoutHeader title='Links' />
-        <AddLink />
-        <LinksList />
+        <LogoutHeader title='Your Links' />
+        <div className='link-content'>
+          <AddLink />
+          <LinksList />
+        </div>
       </div>
     )
   }

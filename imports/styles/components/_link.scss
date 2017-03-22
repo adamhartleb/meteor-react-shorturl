@@ -1,0 +1,11 @@
+.link {
+  background-color: $link-bg;
+  border: 1px solid $link-border;
+  margin-bottom: $space;
+  padding: $space;
+}
+
+.link__buttons {
+  display: flex;
+  justify-content: space-between;
+}

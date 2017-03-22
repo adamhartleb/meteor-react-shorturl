@@ -11,16 +11,20 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'Links.Insert' (url) {
+  'Links.Insert' (url, name) {
     if (!this.userId) throw new Meteor.Error('Not Authorized')
     new SimpleSchema({
       url: {
         type: String,
         label: 'Your link',
         regEx: SimpleSchema.RegEx.Url
+      },
+      name: {
+        type: String,
+        min: 1
       }
-    }).validate({ url })
-    Link.insert({ _id: shortid.generate(), url, user: this.userId, hidden: false, visitedCount: 0, lastVisitedAt: null })
+    }).validate({ url, name })
+    Link.insert({ _id: shortid.generate(), url, name, user: this.userId, hidden: false, visitedCount: 0, lastVisitedAt: null })
   },
   'Links.UpdateHidden' (_id, hidden) {
     if (!this.userId) throw new Meteor.Error('Not Authorized')

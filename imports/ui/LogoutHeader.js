@@ -6,9 +6,11 @@ const logOut = () => {
 }
 
 export const LogoutHeader = ({ title }) => (
-  <div>
-    <h1>{title}</h1>
-    <button className='button' onClick={logOut}>Logout</button>
+  <div className='header'>
+    <div className='header__logout'>
+      <h1 className='header__title'>{title}</h1>
+      <button className='button button--logout' onClick={logOut}>Logout</button>
+    </div>
   </div>
 )
 

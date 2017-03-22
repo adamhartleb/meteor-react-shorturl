@@ -1,0 +1,17 @@
+.header {
+  background-color: $header-bg;
+  color: $header-color;
+}
+
+.header__logout {
+  display: flex;
+  max-width: $site-width;
+  margin: 0 auto;
+  padding: $space;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title {
+  margin: 0;
+}
