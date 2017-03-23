@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
 import Overlay from './Overlay'
 
-export default class AddLink extends Component {
+export default class EditLink extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -11,14 +11,15 @@ export default class AddLink extends Component {
       isModalOpen: false,
       error: ''
     }
-    this.createLink = this.createLink.bind(this)
+    this.editLink = this.editLink.bind(this)
     this.handleModal = this.handleModal.bind(this)
   }
-  createLink (e) {
+  editLink (e) {
     e.preventDefault()
-    const { linkUrl, urlName } = this.state
-
-    Meteor.call('Links.Insert', linkUrl, urlName, (err, res) => {
+    console.log('Fired here')
+    const { urlName } = this.state
+    const { linkId } = this.props
+    Meteor.call('Links.UpdateLink', linkId, urlName, (err, res) => {
       if (!err) this.handleModal(false)
       else this.setState({ error: err.reason })
     })
@@ -28,18 +29,17 @@ export default class AddLink extends Component {
   }
   render () {
     return (
-      <div>
-        <h1>Links List</h1>
-        <button className='button' onClick={() => this.handleModal(true)}>+ Add Link</button>
+      <span>
+        <button className='button button--pill' onClick={() => this.handleModal(true)}>Edit</button>
         <Overlay
-          display='initial'
-          title={'Add'}
-          createLink={this.createLink}
+          display='none'
+          title={'Edit'}
+          createLink={this.editLink}
           handleModal={this.handleModal}
           handleUrlName={(e) => this.setState({urlName: e.target.value})}
           handleUrl={(e) => this.setState({linkUrl: e.target.value})}
           {...this.state} />
-      </div>
+      </span>
     )
   }
 }

@@ -26,8 +26,19 @@ Meteor.methods({
     }).validate({ url, name })
     Link.insert({ _id: shortid.generate(), url, name, user: this.userId, hidden: false, visitedCount: 0, lastVisitedAt: null })
   },
+  'Links.UpdateLink' (_id, name) {
+    if (!this.userId) throw new Meteor.Error('Not Authorized')
+    new SimpleSchema({
+      name: {
+        type: String,
+        min: 1
+      }
+    }).validate({ name })
+    Link.update({ _id }, {$set: { name }})
+  },
   'Links.UpdateHidden' (_id, hidden) {
     if (!this.userId) throw new Meteor.Error('Not Authorized')
+    console.log('Fired back here')
     Link.update({ _id }, {$set: { hidden: !hidden }})
   },
   'Links.UpdateVisited' (_id) {

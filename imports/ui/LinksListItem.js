@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Clipboard from 'clipboard'
+import EditLink from './EditLink'
 import { Meteor } from 'meteor/meteor'
 
 export default class LinkListItem extends Component {
@@ -39,7 +40,7 @@ export default class LinkListItem extends Component {
             </button>
           </div>
           <div>
-            <button className='button button--pill'>Edit</button>
+            <EditLink linkId={_id} />
             <button className='button button--pill button--delete'>Delete</button>
           </div>
         </div>
