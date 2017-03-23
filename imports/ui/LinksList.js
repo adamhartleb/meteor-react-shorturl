@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { Tracker } from 'meteor/tracker'
 import { Link } from '../api/links'
+import FlipMove from 'react-flip-move'
 import LinkListItem from './LinksListItem'
 
 export default class LinksList extends Component {

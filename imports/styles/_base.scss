@@ -24,6 +24,11 @@ p {
   margin-bottom: $space;
 }
 
+label, input[type=checkbox] {
+  user-select: none;
+  cursor: pointer;
+}
+
 input[type=text], input[type=email], input[type=password] {
   font-size: $base-font-size;
   margin-bottom: $space;
