@@ -16,7 +16,6 @@ export default class EditLink extends Component {
   }
   editLink (e) {
     e.preventDefault()
-    console.log('Fired here')
     const { urlName } = this.state
     const { linkId } = this.props
     Meteor.call('Links.UpdateLink', linkId, urlName, (err, res) => {

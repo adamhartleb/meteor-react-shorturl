@@ -42,7 +42,6 @@ Meteor.methods({
   },
   'Links.UpdateHidden' (_id, hidden) {
     if (!this.userId) throw new Meteor.Error('Not Authorized')
-    console.log('Fired back here')
     Link.update({ _id }, {$set: { hidden: !hidden }})
   },
   'Links.UpdateVisited' (_id) {

@@ -14,6 +14,9 @@ export default class LinkListItem extends Component {
   componentDidMount () {
     this.clip = new Clipboard(this.refs.urlCopy)
     this.calculateLastVisit()
+    setInterval(() => {
+      this.calculateLastVisit()
+    }, 1000)
   }
   componentWillUnmount () {
     this.clip.destroy()
@@ -25,7 +28,7 @@ export default class LinkListItem extends Component {
     Meteor.call('Links.DeleteLink', id)
   }
   calculateLastVisit () {
-    if (!time) return this.setState({ lastVisitTime: 'Not visited yet' })
+    if (!this.props.lastVisitedAt) return this.setState({ lastVisitTime: 'Not visited yet' })
     let time = this.props.lastVisitedAt.getTime()
     let now = new Date().getTime()
     let timeDiff = now - time
@@ -48,7 +51,7 @@ export default class LinkListItem extends Component {
         <p>Last time visited: {this.state.lastVisitTime}</p>
         <div className='link__buttons'>
           <div>
-            <a onClick={() => this.calculateLastVisit()} className='button button--link button--pill' href={url + _id} target='_blank'>
+            <a className='button button--link button--pill' href={url + _id} target='_blank'>
               Visit
             </a>
             <button
