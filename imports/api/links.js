@@ -27,7 +27,7 @@ Meteor.methods({
     Link.insert({ _id: shortid.generate(), url, name, user: this.userId, hidden: false, visitedCount: 0, lastVisitedAt: null })
   },
   'Links.UpdateLink' (_id, name) {
-    if (!this.userId || _id !== this.userId) throw new Meteor.Error('Not Authorized')
+    if (!this.userId) throw new Meteor.Error('Not Authorized')
     new SimpleSchema({
       name: {
         type: String,
